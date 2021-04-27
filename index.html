@@ -24,16 +24,31 @@
     const videoScreen = document.getElementById("videoSceen");
 
     const play = () => {
+      // accès au flux vidéo
       if (navigator.mediaDevices.getUserMedia) {
         navigator.mediaDevices
           .getUserMedia({ video: true })
           .then((stream) => {
+            //  appliquer l'élément vidéo dans srcObject.
             videoScreen.srcObject = stream;
           })
           .catch((err) => {
             console.log("Something went wrong", err);
           });
       }
+    };
+
+    const stop = () => {
+      //  récupérer la vidéo depuis srcObject,
+      const stream = videoScreen.srcObject;
+      const tracks = stream.getTracks();
+
+      // utiliser la methode stop sur les pistes
+      for (let i = 0; i < tracks.length; i++) {
+        const track = tracks[i];
+        track.stop();
+      }
+      videoScreen.srcObject = null;
     };
   </script>
 </html>
