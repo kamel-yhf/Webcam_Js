@@ -25,6 +25,8 @@
   <!-- Javascript -->
   <script>
     const videoScreen = document.getElementById("videoSceen");
+    const screenshots = document.getElementById("screenshots");
+    let capture;
 
     const play = () => {
       // accès au flux vidéo
@@ -34,6 +36,8 @@
           .then((stream) => {
             //  appliquer l'élément vidéo dans srcObject.
             videoScreen.srcObject = stream;
+            // objet ImageCapture défini
+            capture = new ImageCapture(stream.getVideoTracks()[0]);
           })
           .catch((err) => {
             console.log("Something went wrong", err);
@@ -52,6 +56,16 @@
         track.stop();
       }
       videoScreen.srcObject = null;
+    };
+
+    const screenShot = () => {
+      capture.takePhoto().then((el) => {
+        // creation de l'élement html img
+        const img = document.createElement("img");
+        img.src = window.URL.createObjectURL(el);
+        // ajout des capture à l'element img
+        screenshots.appendChild(img);
+      });
     };
   </script>
 </html>
