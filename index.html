@@ -18,4 +18,22 @@
     <!-- affichage de la video -->
     <video id="videoSceen" autoplay="true"></video>
   </body>
+
+  <!-- Javascript -->
+  <script>
+    const videoScreen = document.getElementById("videoSceen");
+
+    const play = () => {
+      if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices
+          .getUserMedia({ video: true })
+          .then((stream) => {
+            videoScreen.srcObject = stream;
+          })
+          .catch((err) => {
+            console.log("Something went wrong", err);
+          });
+      }
+    };
+  </script>
 </html>
