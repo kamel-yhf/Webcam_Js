@@ -11,6 +11,8 @@ h1 {
 }
 
 button {
+  background: rgb(42, 73, 247);
+  color: #fff;
   font-size: 1.2rem;
   font-weight: 700;
   border: none;
@@ -32,7 +34,18 @@ video {
   width: 520px;
   height: 400px;
   margin-top: 3rem;
-  display: block;
+  display: grid;
   margin-left: auto;
   margin-right: auto;
+  justify-content: center;
+}
+
+#screenshots {
+  display: block;
+  justify-content: center;
+}
+
+#screenshots img {
+  width: 200px;
+  margin: 5px;
 }
